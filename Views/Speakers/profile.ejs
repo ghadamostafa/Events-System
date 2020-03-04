@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+      <div style="margin: 10px; text-align: right;">
+        <p style="display: inline;margin-right: 200px;">Welcome <%= name %></p>
+        <a href="/logout" class="btn btn-danger" >Logout</a>
+      </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Speaker</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li ><a href="/speaker/profile">Home Page</a></li>
+                <li><a href="/speaker/Editprofile">Edit profile</a></li>
+              </ul>
+            </div>
+          </nav>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Events</th>
+                <th scope="col">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach(function(element){ %>
+                <tr>
+                    <th scope="row"><%= element._id%></th>
+                    <td><%= element.title %></td>
+                    <% if (element.mainSpeaker == _id){ %>
+                      <td>Main Speaker</td>
+                    <% } else{ %>
+                      <td>Other Speaker</td>
+                    <% } %>
+                </tr>
+            <% }) %>
+             
+            </tbody>
+          </table>
+    </body>
+</html>

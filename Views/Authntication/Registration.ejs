@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      form{
+        /* text-align: center; */
+        width: 600px;
+        height: 570px;
+        padding: 10px;
+        margin: 10px auto;
+        border: 1px solid gray;
+      }
+    </style>
+</head>
+<body>
+    <form action="/Register" method="POST">
+        <div class="form-group">
+            <label for="ID">ID</label>
+            <input type="text" class="form-control" id="ID" placeholder="Enter ID" name="id">
+          </div>
+        <div class="form-group">
+          <label for="FullName">FullName</label>
+          <input type="text" class="form-control" id="FullName" placeholder="Enter Full Name" name="FullName">
+        </div>
+        <div class="form-group">
+          <label for="UserName">UserName</label>
+          <input type="text" class="form-control" id="UserName" placeholder="Enter User Name" name="UserName">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" id="Password" placeholder="Password" name="Password">
+        <div>
+            
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" placeholder="Enter City" name="City">
+        </div>
+        <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" class="form-control" id="Street" placeholder="Enter Street" name="Street">
+        </div>
+        <div class="form-group">
+            <label for="Building">Building</label>
+            <input type="text" class="form-control" id="Building" placeholder="Enter Building" name="Building">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+</body>
+</html>

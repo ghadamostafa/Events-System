@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+            function handleDelete(ID,currentRecord)
+            {
+                $.ajax({
+                    url:"http://localhost:8082/events/delete",
+                    method:"POST",
+                    contentType:"application/json",
+                    data:JSON.stringify({id:ID}),
+                    dataType:"json",
+                    success(result){
+                        $(currentRecord).parents("tr").remove();
+                    },
+                    error(){}
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <%- include ("../Partials/partial") -%>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Event Title</th>
+                    <th scope="col">Event Date</th>
+                    <th scope="col">Main Speaker</th>
+                    <th scope="col">Other Speakers</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% data.forEach(function(element){ %>
+                    <tr>
+                        <th scope="row"><%= element._id%></th>
+                        <td><%= element.title %></td>
+                        <td><%= moment(element.eventDate).utc().format('YYYY-MM-DD') %></td>
+                        <td><%= element.mainSpeaker.FullName %></td>
+                        <td><% element.otherSpeakers.forEach(function(speaker){ %>
+                                <li><%= speaker.FullName %> </li>
+                       <% }) %></td>
+                        <td><a href="/events/edit/<%= element._id%>" class="btn btn-danger">Edit</a></td>
+                        <td><a class="btn btn-primary" onclick="handleDelete(<%= element._id%>,this)">Delete</a></td>
+                    </tr>
+                <% }) %>
+                 
+                </tbody>
+              </table>
+            </div>
+    </body>
+</html>

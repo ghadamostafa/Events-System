@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!-- <script src="jquery-3.2.1.js"></script> -->
+        <script>
+            function handleDelete(ID,currentRecord)
+            {
+                $.ajax({
+                    url:"http://localhost:8082/speakers/delete",
+                    method:"POST",
+                    contentType:"application/json",
+                    data:JSON.stringify({id:ID}),
+                    dataType:"json",
+                    success(result){
+                        $(currentRecord).parents("tr").remove();
+                    },
+                    error(){}
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <%- include ("../Partials/partial") -%>
+        </div>
+        <div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Street</th>
+                <th scope="col">Building</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach(function(element){ %>
+                <tr>
+                    <th scope="row"><%= element._id%></th>
+                    <td><%= element.UserName %></td>
+                    <td><%= element.Address.City %></td>
+                    <td><%= element.Address.Street %></td>
+                    <td><%= element.Address.Building %></td>
+                    <td><a href="/speakers/edit/<%= element._id%>" class="btn btn-danger">Edit</a></td>
+                    <td><a class="btn btn-primary" onclick="handleDelete(<%= element._id %>,this)">Delete</a></td>
+                </tr>
+            <% }) %>
+             
+            </tbody>
+          </table>
+        </div>
+    </body>
+</html>
